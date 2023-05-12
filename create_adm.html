@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora Excalibur - Criar Novo Administrador</title>
+  </head>
+  <body>
+    <h1>Criar Novo Administrador</h1>
+
+<form id="create-adm-form">
+  <label for="name">Nome:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="phone">Número de telefone:</label><br>
+  <input type="text" id="phone" name="phone"><br>
+  <label for="work_id">Número da Carteira de Trabalho:</label><br>
+  <input type="text" id="work_id" name="work_id"><br>
+  <label for="email">Email:</label><br>
+  <input type="text" id="email" name="email"><br>
+  <label for="username">Nome de usuário:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="password">Senha:</label><br>
+  <input type="password" id="password" name="password"><br><br>
+  <input type="submit" value="Criar">
+</form>
+
+<script>
+  document.getElementById('create-admin-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var workId = document.getElementById('work_id').value;
+    var email = document.getElementById('email').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Obter os administradores cadastrados do Local Storage
+    var admins = JSON.parse(localStorage.getItem('admins')) || [];
+
+    // Verificar se o nome de usuário já existe
+    var adminExists = admins.some(function(admin) {
+      return admin.username === username;
+    });
+
+    if (adminExists) {
+      alert('Nome de usuário já existe. Escolha outro nome de usuário.');
+      return;
+    }
+
+    // Criar um novo administrador
+    var newAdmin = {
+      name: name,
+      phone: phone,
+      workId: workId,
+      email: email,
+      username: username,
+      password: password
+    };
+
+    // Adicionar o novo administrador ao array
+    admins.push(newAdmin);
+
+    // Salvar o array atualizado no Local Storage
+    localStorage.setItem('admins', JSON.stringify(admins));
+
+    alert('Novo administrador criado com sucesso!');
+    document.getElementById('create-admin-form').reset();
+  });
+</script>
+<p>Pagina de login<a href="admin_login.html">Acesse aqui</a>.</p>
+</body>
+</html>

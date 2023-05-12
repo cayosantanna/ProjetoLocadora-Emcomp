@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora de Filmes - Excluir Administrador</title>
+  </head>
+  <body>
+    <h1>Excluir Administrador</h1>
+    <form id="delete-admin-form">
+      <label for="username">Nome de usuário:</label><br>
+      <input type="text" id="username" name="username"><br><br>
+      <input type="submit" value="Excluir Administrador">
+    </form>
+
+    <script>
+      document.getElementById('delete-admin-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('username').value;
+
+        // Obter os administradores cadastrados do Local Storage
+        var admins = JSON.parse(localStorage.getItem('admins'));
+
+        // Verificar se o nome de usuário existe no cadastro de administradores
+        var adminIndex = admins.findIndex(function(admin) {
+          return admin.username === username;
+        });
+
+        if (adminIndex === -1) {
+          alert('Nome de usuário inválido!');
+          return;
+        }
+
+        // Remover o administrador do array
+        admins.splice(adminIndex, 1);
+
+        // Salvar o array atualizado no Local Storage
+        localStorage.setItem('admins', JSON.stringify(admins));
+
+        alert('Administrador excluído com sucesso!');
+        document.getElementById('delete-admin-form').reset();
+      });
+    </script>
+  </body>
+</html>

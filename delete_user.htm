@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora de Filmes - Excluir Usuário</title>
+  </head>
+  <body>
+    <h1>Excluir Usuário</h1>
+    <form id="delete-user-form">
+      <label for="username">Nome de usuário:</label><br>
+      <input type="text" id="username" name="username"><br><br>
+      <input type="submit" value="Excluir Usuário">
+    </form>
+
+    <script>
+      document.getElementById('delete-user-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('username').value;
+
+        // Obter os usuários cadastrados do Local Storage
+        var users = JSON.parse(localStorage.getItem('users'));
+
+        // Verificar se o nome de usuário existe no cadastro de usuários
+        var userIndex = users.findIndex(function(user) {
+          return user.username === username;
+        });
+
+        if (userIndex === -1) {
+          alert('Nome de usuário inválido!');
+          return;
+        }
+
+        // Remover o usuário do array
+        users.splice(userIndex, 1);
+
+        // Salvar o array atualizado no Local Storage
+        localStorage.setItem('users', JSON.stringify(users));
+
+        alert('Usuário excluído com sucesso!');
+        document.getElementById('delete-user-form').reset();
+      });
+    </script>
+  </body>
+</html>
+

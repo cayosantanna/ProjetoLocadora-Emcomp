@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora Exclibur - Usuário</title>
+  </head>
+  <body onload="showAlert()">
+    <h1>Bem-vindo, [Nome do Usuário]!</h1>
+    <h2>Filmes Disponíveis</h2>
+    <ul>
+      <li>
+        <img src="capa_do_filme.jpg" alt="Capa do Filme">
+        <h3>Nome do Filme</h3>
+        <strong> <p>Disponível: Sim</p> </strong>
+        <p>Quantidade de DVDs disponíveis: 3</p>
+        <p>Preço: R$5,00</p>
+        <p>Tempo de Aluguel: 3 dias</p>
+        <button>Adicionar ao Carrinho</button>
+        <p>Resumo: Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="https://pt.wikipedia.org/wiki/Nome_do_Filme">Saiba mais</a>.</p>
+        <p>Duração: 120 minutos</p>
+        <p>Elenco: Fulano, Ciclano, Beltrano</p>
+      </li>
+      <!-- Adicione mais filmes aqui -->
+    </ul>
+    <h2>Carrinho</h2>
+    <!-- Adicione os filmes selecionados aqui -->
+    <h2>Método de Pagamento</h2>    
+
+    <form action="select_payment_method.html">
+      <label for="payment_method">Selecione o metodo de pagamento:</label><br>
+      
+      <select id="payment_method" name="payment_method">
+        <option value="credit_card">Cartão de Credito</option>
+        <option value="bank_transfer">Transferência Bancária</option>
+        <option value="cash">Dinheiro</option>
+      </select><br><br>
+      <input type="submit" value="Selecionar">
+    </form>
+    <script>
+      document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+        event.preventDefault();
+        var paymentMethod = document.querySelector('#payment_method').value;
+        if (paymentMethod === 'credit_card') {
+            window.location.href = 'card_register.html';
+        } if(paymentMethod === 'bank_transfer'){
+          window.location.href = 'bankAccount_register.html';
+        }
+      });
+    </script>
+    <script>
+       function showAlert() {
+        alert("ATENÇÃO: Página em desenvolvimento. Veja como está o beta!\nObservação: apenas o link, o botão 'Selecionar' e a página 'Método de Pagamento' estão funcionando.");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Locadora Excalibur - Editar Usuario</title>
+</head>
+<body>
+    <h1>Editar Usuario</h1>
+    <!-- Formulario de registro -->
+    <form onsubmit="return guardarUsuario()" action="editar-usuario.php?usr=<?php echo $id ?>&act=upd">
+        <!-- Campos formulatrios -->
+        ...
+        <?php if ($err) : ?>(
+                <div class="alerta_error">
+                    <?php echo $err ?>
+                </div>
+            )<?php endif ;?>
+
+        <!-- Botão Submit -->
+        <button type="submit" class="btn btn-primary btn-block btn-lg mb-3 mt-5">
+             Actualizar registro
+        </button>
+    </form>
+    <!---- Javascript para salvar ---->    
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(":submit").click(guardarUsuario);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style_admin.css">
+    <title>Locadora Excalibur - Login do Administrador</title>
+    <style>
+      .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0 auto;
+        width: 450px;
+        border: 4px solid #3f3f3f9a;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 70px 70px rgb(0, 0, 0);
+        background-image: linear-gradient(to bottom,#66b396, #465e8a);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('login-button').addEventListener('click', function() {
+    var username = document.forms['login']['username'].value;
+    var password = document.forms['login']['password'].value;
+
+    // Obter os administradores cadastrados do Local Storage
+    var admins = JSON.parse(localStorage.getItem('admins'));
+
+    // Verificar se as informações fornecidas correspondem a algum cadastro
+    var adminFound = admins.find(function(admin) {
+      return admin.username === username && admin.password === password;
+    });
+
+    if (adminFound) {
+      alert('Login bem-sucedido!');
+      window.location.href = 'adm_page.html';
+    } else {
+      alert('Usuário ou senha inválidos.');
+    }
+  });
+});
+    </script>
+    <div class="box">
+      <h1>Portal do Administrador</h1> 
+      <center>
+        <form name="login">
+          <table width="160" border="0" cellpadding="3" height="123" cellspacing="0">
+            <tr>
+              <td height="20" width="62">
+                <p align="left"><font face="Verdana" style="font-size: 8pt">Usuário:</font></p>
+              </td>
+              <td height="20" align="center" width="74">
+                <input type="text" name="username" size="9">
+              </td>
+            </tr>
+            <tr>
+              <td height="21" width="62">
+                <p align="left"><font style="font-size: 8pt" face="Verdana">Senha:</font></p>
+              </td>
+              <td height="21" width="74">
+                <input type="password" name="password" size="9">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center" height="26" width="146">
+                <input type="button" value="Entrar" id="login-button">
+              </td>
+            </tr>
+          </table>
+        </form>
+        <p>Não é administrador? <a href="index.html">Acesse aqui</a>.</p>
+      </center>
+    </div>
+  </body>
+</html>

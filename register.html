@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora Excalibur - Registro de Usuário</title>
+  </head>
+  <body>
+    <h1>Registro de Usuário</h1>
+    <form  id="signup-form" action="register.html">
+      <label for="name">Nome:</label><br>
+      <input type="text" id="name" name="name"><br>
+      <label for="phone">Número de telefone:</label><br>
+      <input type="text" id="phone" name="phone"><br>
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="email"><br>
+      <label for="cpf">CPF:</label><br>
+      <input type="text" id="cpf" name="cpf"><br>
+      <label for="address">Endereço:</label><br>
+      <input type="text" id="address" name="address"><br>
+      <label for="birthdate">Data de nascimento:</label><br>
+      <input type="date" id="birthdate" name="birthdate"><br>
+      <label for="username">Nome de usuário:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Senha:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <input type="submit" value="Registrar">
+    </form> 
+    <table id="table">
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>phone</th>
+          <th>email</th>
+          <th>cpf</th>
+          <th>adress</th>
+          <th>birthdate</th>
+          <th>username</th>
+          <th>password</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+     <script>
+
+      let data = JSON.parse(localStorage.getItem("data")) || [];
+
+      function addData(name, phone, email, cpf, address, birthdate, username, password) {
+        data.push({
+          name: name,
+          phone: phone,
+          email: email,
+          cpf: cpf,
+          address: address,
+          birthdate: birthdate,
+          username: username,
+          password: password
+        });
+        updateTable();
+        saveData();
+      }
+      function saveData() {
+        localStorage.setItem("data", JSON.stringify(data));
+      }
+      function updateTable() {
+        let tbody = document.querySelector("#table tbody");
+        tbody.innerHTML = "";
+        for (let i = 0; i < data.length; i++){
+          let row = document.createElement("tr");
+          row.innerHTML = `<td>${data[i].name}</td>
+                         <td>${data[i].phone}</td>
+                         <td>${data[i].email}</td>
+                         <td>${data[i].cpf}</td>
+                         <td>${data[i].address}</td>
+                         <td>${data[i].birthdate}</td>
+                         <td>${data[i].username}</td>
+                         <td>${data[i].password}</td>`;
+                         tbody.appendChild(row);
+        }
+      }
+      document.querySelector("#signup-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let name = document.querySelector("#name").value;
+      let phone = document.querySelector("#phone").value;
+      let email = document.querySelector("#email").value;
+      let cpf = document.querySelector("#cpf").value;
+      let address = document.querySelector("#address").value;
+      let birthdate = document.querySelector("#birthdate").value;
+      let username = document.querySelector("#username").value;
+      let password = document.querySelector("#password").value;
+
+
+      if (!name || !phone || !email || !cpf || !address || !birthdate || !username || !password) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+     }
+
+     addData(name, phone, email, cpf, address, birthdate, username, password);
+      });
+      document.getElementById('login-form').addEventListener('submit', signup);
+
+    function signup(event) {
+    event.preventDefault();
+
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var email = document.getElementById('email').value;
+    var cpf = document.getElementById('cpf').value;
+    var address = document.getElementById('address').value;
+    var birthdate = document.getElementById('birthdate').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Verificar se já existe um array de usuários no Local Storage
+    var users = localStorage.getItem('users');
+    if (users) {
+    users = JSON.parse(users); // Converter de string para array
+    } else {
+    users = []; // Criar um novo array se não existir
+    }
+
+    // Verificar se o usuário já está cadastrado
+    var existingUser = users.find(function(user) {
+    return user.username === username;
+    });
+
+    if (existingUser) {
+    alert('Nome de usuário já cadastrado!');
+    return;
+    }
+
+    // Adicionar o novo usuário ao array
+    var newUser = {
+    name: name,
+    phone: phone,
+    email: email,
+    cpf: cpf,
+    address: address,
+    birthdate: birthdate,
+    username: username,
+    password: password
+   };
+
+    users.push(newUser);
+
+    // Salvar o array atualizado no Local Storage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('Cadastro realizado com sucesso!');
+    document.getElementById('signup-form').reset();
+    }
+  
+    </script>
+    <p>Já tem uma conta? <a href="index.html">Clique aqui para entrar</a>.</p>
+    
+  </body>
+</html>

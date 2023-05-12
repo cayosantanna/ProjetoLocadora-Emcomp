@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora Excalibur - Editar Administrador</title>
+  </head>
+  <body>
+    <h1>Editar Administrador</h1>
+    <form id="edit-admin-form" method="POST">
+      <label for="username">Nome de usuário:</label>
+
+      <input type="text" id="username" name="username">
+
+
+      <label for="new-password">Nova senha:</label>
+
+      <input type="password" id="new-password" name="new-password">
+
+
+      <input type="hidden" name="action" value="updateAdministrator">
+      <input type="hidden" name="id_usr" value="<?php echo $_GET['usr']; ?>">
+      <input type="submit" value="Atualizar Senha">
+    </form>
+
+    <script>
+      document.getElementById("edit-admin-form").addEventListener("submit", function(e){
+        e.preventDefault();
+
+        // Pega campos do formulário
+        const usernameInput = document.getElementById("username");
+        const newPasswordInput = document.getElementById("new-password");
+
+        // Extrai dados dos inputs
+        const username = usernameInput.value;
+        const newPassword = newPasswordInput.value;
+
+        // Carrega dados anteriores da caixa de diálogo em caso de erro
+        const usernameErrorDiv = document.querySelector(".alerta_erro .form-control");
+        usernameErrorDiv?.innerHTML = "";
+
+        // Realiza solicitação AJAX ao servidor para atualizar o administrador
+        fetch("/api/administrators/edit/" + e.target["name"], {
+          credentials: 'include',
+          body: JSON.stringify({ username, newPassword }),
+          headers: {'Content-Type': 'application/json'},
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(JSON.strinify(data));
+          
+          // Se a operação foi bem-sucedida, limpa os input
+          usernameInput.value = "";
+          newPasswordInput.value = "";
+        }).catch((error) =>{
+          console.error(error);
+        });
+      });  
+    </script>
+  </body>
+</html>

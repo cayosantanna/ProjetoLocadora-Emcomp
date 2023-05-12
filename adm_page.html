@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora Excalibur - Administrador</title>
+  </head>
+  <body>
+    <h1>Bem-vindo, <span id="admin-name"></span>!</h1>
+
+    <h2>Gerenciar Filmes</h2>
+    <a href="new_movies.html" target="_blank" rel="noopener noreferrer"> <button>Criar Novo Filme</button></a>
+    <ul>
+      <li>
+        <img src="capa_do_filme.jpg" alt="Capa do Filme">
+        <h3>Nome do Filme</h3>
+        <button>Editar</button>  não funciona 
+        <button>Excluir</button> não funciona 
+      </li>
+      
+    </ul>
+    
+    <h2>Gerenciar Usuários</h2>
+    <ul>
+      <li>
+        <button id="editar-usuario-btn">Editar</button>
+        <button id="excluir-usuario-btn">Excluir</button>
+      </li>
+    </ul>
+
+    <h2>Gerenciar Administradores</h2>
+    <ul>
+      <li>
+        <h3>Gerenciar Administradores</h3>
+        <a href="create_adm.html" target="_blank" rel="noopener noreferrer">
+          <button id="criar-administrador-btn">Criar novo Administrador</button>
+        </a>
+        <button id="editar-administrador-btn">Editar</button>
+        <button id="excluir-administrador-btn">Excluir</button>
+      </li>
+    </ul>
+
+    <script>
+      // Verificar se o nome do administrador está armazenado no Local Storage
+      var adminName = localStorage.getItem('adminName');
+
+      // Verificar se o nome do administrador existe
+      if (adminName) {
+        // Atualizar o texto do elemento span com o nome do administrador
+        var adminNameElement = document.getElementById('admin-name');
+        adminNameElement.textContent = adminName;
+      }
+
+      // Lógica para os botões
+
+      // Botão "Editar" do usuário
+      var editarUsuarioBtn = document.getElementById('editar-usuario-btn');
+      editarUsuarioBtn.addEventListener('click', function() {
+        // Lógica de edição do usuário
+        console.log('Editar usuário');
+      });
+
+      // Botão "Excluir" do usuário
+      var excluirUsuarioBtn = document.getElementById('excluir-usuario-btn');
+      excluirUsuarioBtn.addEventListener('click', function() {
+        // Lógica de exclusão do usuário
+        console.log('Excluir usuário');
+      });
+
+      // Botão "Editar" do administrador
+      var editarAdministradorBtn = document.getElementById('editar-administrador-btn');
+      editarAdministradorBtn.addEventListener('click', function() {
+        // Lógica de edição do administrador
+        console.log('Editar administrador');
+      });
+
+      // Botão "Excluir" do administrador
+      var excluirAdministradorBtn = document.getElementById('excluir-administrador-btn');
+      excluirAdministradorBtn.addEventListener('click', function() {
+        // Lógica de exclusão do administrador
+        console.log('Excluir administrador');
+      });
+    </script>
+  </body>
+</html>

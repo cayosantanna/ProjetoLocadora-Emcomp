@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locadora de Filmes - Editar Filme</title>
+  </head>
+  <body>
+    <h1>Editar Filme</h1>
+    <form action="edit_movie.html">
+      <label for="name">Nome do Filme:</label><br>
+      <input type="text" id="name" name="name" value="[Nome do Filme]"><br>
+      <label for="cover">Capa do Filme:</label><br>
+      <input type="file" id="cover" name="cover"><br>
+      <img src="[Capa do Filme]" alt="Capa do Filme"><br>
+      <label for="available">Disponível:</label><br>
+      <select id="available" name="available">
+        <option value="yes" selected>Sim</option>
+        <option value="no">Não</option>
+      </select><br>
+      <label for="quantity">Quantidade de DVDs disponíveis:</label><br>
+      <input type="number" id="quantity" name="quantity" value="[Quantidade de DVDs disponíveis]"><br>
+      <label for="price">Preço:</label><br>
+      <input type="number" id="price" name="price" value="[Preço]"><br>
+      <label for="rental_time">Tempo de Aluguel:</label><br>
+      <input type="number" id="rental_time" name="rental_time" value="[Tempo de Aluguel]"><br>
+      <label for="summary">Resumo:</label><br>
+      <textarea id="summary" name="summary">[Resumo]</textarea><br>
+      <label for="wikipedia_link">Link da Wikipédia:</label><br>
+      <input type="url" id="wikipedia_link" name="wikipedia_link" value="[Link da Wikipédia]"><br>
+      <label for="duration">Duração:</label><br>
+      <input type="number" id="duration" name="duration" value="[Duração]"><br>
+      <label for="cast">Elenco:</label><br>
+      <input type="text" id="cast" name="cast" value="[Elenco]"><br><br>
+      <input type="submit" value="Salvar">
+    </form> 
+  </body>
+</html>
